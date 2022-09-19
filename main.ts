@@ -15,26 +15,20 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     vy = 1
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
-    if (atefoodflag == 0 && snakehead.overlapsWith(snakefood)) {
+    if (atefoodflag == 3 && snakehead.overlapsWith(snakefood)) {
         snakebody.unshift(sprites.create(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
             `, SpriteKind.Player))
-        snakebody[0].setPosition(foodx - updatevx * 10 + 2, foody - updatevy * 10 + 2)
+        snakebody[1].setPosition(foodx - updatevx * 10 + 2, foody - updatevy * 10 + 2)
         foodx = randint(0, 15) * 10
         foody = randint(0, 11) * 10
     }
@@ -55,67 +49,49 @@ let snakebody: Sprite[] = []
 snakebody = []
 atefoodflag = 0
 snakehead = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . 3 3 3 3 3 3 3 3 3 3 
-    . . . . . . 3 3 3 3 3 3 3 3 3 3 
-    . . . . . . 3 3 3 3 3 3 3 3 3 3 
-    . . . . . . 3 3 3 3 3 3 3 3 3 3 
-    . . . . . . 3 3 3 3 3 3 3 3 3 3 
-    . . . . . . 3 3 3 3 3 3 3 3 3 3 
-    . . . . . . 3 3 3 3 3 3 3 3 3 3 
-    . . . . . . 3 3 3 3 3 3 3 3 3 3 
-    . . . . . . 3 3 3 3 3 3 3 3 3 3 
-    . . . . . . 3 3 3 3 3 3 3 3 3 3 
+    3 3 3 3 3 3 3 3 3 3 
+    3 3 3 3 3 3 3 3 3 3 
+    3 3 3 3 3 3 3 3 3 3 
+    3 3 3 3 3 3 3 3 3 3 
+    3 3 3 3 3 3 3 3 3 3 
+    3 3 3 3 3 3 3 3 3 3 
+    3 3 3 3 3 3 3 3 3 3 
+    3 3 3 3 3 3 3 3 3 3 
+    3 3 3 3 3 3 3 3 3 3 
+    3 3 3 3 3 3 3 3 3 3 
     `, SpriteKind.Player)
 snakehead.setFlag(SpriteFlag.AutoDestroy, true)
 snakefood = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . 2 2 2 2 2 2 2 2 2 2 
-    . . . . . . 2 2 2 2 2 2 2 2 2 2 
-    . . . . . . 2 2 2 2 2 2 2 2 2 2 
-    . . . . . . 2 2 2 2 2 2 2 2 2 2 
-    . . . . . . 2 2 2 2 2 2 2 2 2 2 
-    . . . . . . 2 2 2 2 2 2 2 2 2 2 
-    . . . . . . 2 2 2 2 2 2 2 2 2 2 
-    . . . . . . 2 2 2 2 2 2 2 2 2 2 
-    . . . . . . 2 2 2 2 2 2 2 2 2 2 
-    . . . . . . 2 2 2 2 2 2 2 2 2 2 
+    2 2 2 2 2 2 2 2 2 2 
+    2 2 2 2 2 2 2 2 2 2 
+    2 2 2 2 2 2 2 2 2 2 
+    2 2 2 2 2 2 2 2 2 2 
+    2 2 2 2 2 2 2 2 2 2 
+    2 2 2 2 2 2 2 2 2 2 
+    2 2 2 2 2 2 2 2 2 2 
+    2 2 2 2 2 2 2 2 2 2 
+    2 2 2 2 2 2 2 2 2 2 
+    2 2 2 2 2 2 2 2 2 2 
     `, SpriteKind.Food)
 foodx = 80
 foody = 60
 vx = 1
 vy = 0
 game.onUpdate(function () {
-    snakehead.setPosition(snakeheadx + 2, snakeheady + 2)
-    snakefood.setPosition(foodx + 2, foody + 2)
+    snakehead.setPosition(snakeheadx + 5, snakeheady + 5)
+    snakefood.setPosition(foodx + 5, foody + 5)
     if (snakeheadx % 10 == 0 && snakeheady % 10 == 0) {
         snakebody.unshift(sprites.create(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . . . . . . . . . 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
-            . . . . . . 3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
+            3 3 3 3 3 3 3 3 3 3 
             `, SpriteKind.Player))
         snakebody[0].setPosition(snakeheadx + 2, snakeheady + 2)
         snakebody.pop().destroy()
@@ -132,7 +108,7 @@ game.onUpdate(function () {
             game.over(false)
         }
     }
-    if (snakeheadx < 0 || (snakeheadx > 160 || (snakeheady < 0 || snakeheady > 120))) {
+    if (snakeheadx < 0 || (snakeheadx > 150 || (snakeheady < 0 || snakeheady > 110))) {
         game.over(false)
     }
 })
